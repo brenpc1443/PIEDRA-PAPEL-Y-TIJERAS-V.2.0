@@ -3,13 +3,14 @@ import papel from "../images/img/papel.png";
 import piedra from "../images/img/piedra.png";
 import tijeras from "../images/img/tijera.png";
 
-export default function Game({Click}) {
+export default function Game({ Click }) {
   let refImgCpu = useRef();
   let [imgPlayer, setImgPlayer] = useState(null);
+  const [imgCPU, setImgCPU] = useState(null);
 
   useEffect(() => {
     imagePlayer(Click);
-    animationImageCpu();
+    Click == "" ? console.log("Aplicacion iniciando") : animationImageCpu();
   }, [Click]);
 
   let randomImage = () => {
@@ -28,26 +29,27 @@ export default function Game({Click}) {
   let animationImageCpu = () => {
     const paint = setInterval(() => {
       let imgCpu = randomImage();
+      setImgCPU(imgCpu)
       //pintar el cambio de imagen del cpu con la funcion randomImage()
-    }, 2000);
+    }, 1000);
     setTimeout(() => {
       clearInterval(paint);
-    }, 8000);
+    }, 4000);
   };
 
   let imagePlayer = (c) => {
     switch (c) {
       case "TIJERAS":
-        setImgPlayer(imgPlayer = tijeras);
+        setImgPlayer((imgPlayer = tijeras));
         break;
       case "PIEDRA":
-        setImgPlayer(imgPlayer = piedra);
+        setImgPlayer((imgPlayer = piedra));
         break;
       case "PAPEL":
-        setImgPlayer(imgPlayer = papel);
+        setImgPlayer((imgPlayer = papel));
         break;
       default:
-        setImgPlayer(imgPlayer = null);
+        setImgPlayer((imgPlayer = null));
         break;
     }
   };
@@ -56,7 +58,7 @@ export default function Game({Click}) {
     <>
       <div className="game-cpu">
         <h4>CPU</h4>
-        <img ref={refImgCpu} src={null} alt="jugada del cpu" />
+        <img ref={refImgCpu} src={imgCPU} alt="jugada del cpu" />
       </div>
       <div className="game-player">
         <h4>JUGADOR</h4>
