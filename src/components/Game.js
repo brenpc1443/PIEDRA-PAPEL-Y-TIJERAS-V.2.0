@@ -5,10 +5,11 @@ import tijeras from "../images/img/tijera.png";
 
 export default function Game({Click}) {
   let refImgCpu = useRef();
-  let [imgCPU, setImgCPU] = useState(null);
+  let [imgPlayer, setImgPlayer] = useState(null);
 
   useEffect(() => {
     imagePlayer(Click);
+    animationImageCpu();
   }, [Click]);
 
   let randomImage = () => {
@@ -37,16 +38,16 @@ export default function Game({Click}) {
   let imagePlayer = (c) => {
     switch (c) {
       case "TIJERAS":
-        setImgCPU(imgCPU = tijeras);
+        setImgPlayer(imgPlayer = tijeras);
         break;
       case "PIEDRA":
-        setImgCPU(imgCPU = piedra);
+        setImgPlayer(imgPlayer = piedra);
         break;
       case "PAPEL":
-        setImgCPU(imgCPU = papel);
+        setImgPlayer(imgPlayer = papel);
         break;
       default:
-        setImgCPU(imgCPU = null);
+        setImgPlayer(imgPlayer = null);
         break;
     }
   };
@@ -55,11 +56,11 @@ export default function Game({Click}) {
     <>
       <div className="game-cpu">
         <h4>CPU</h4>
-        <img ref={refImgCpu} src={imgCPU} alt="jugada del cpu" />
+        <img ref={refImgCpu} src={null} alt="jugada del cpu" />
       </div>
       <div className="game-player">
         <h4>JUGADOR</h4>
-        <img src={null} alt="jugada del jugador" />
+        <img src={imgPlayer} alt="jugada del jugador" />
       </div>
     </>
   );
