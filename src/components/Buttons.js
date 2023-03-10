@@ -1,14 +1,15 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
-const Buttons = ({ handleClick }) => {
-  
+const Buttons = ({ handleClick, playAgainB }) => {
   let [play, setPlay] = useState(true);
-  
-  let click = false;
 
   let refPiedra = useRef(),
     refPapel = useRef(),
     refTijeras = useRef();
+
+  useEffect(() => {
+    playAgainB === false ? console.log() : playAgain();
+  }, [playAgainB]);
 
   let clickButton = (text) => {
     switch (text) {
@@ -26,16 +27,20 @@ const Buttons = ({ handleClick }) => {
         break;
     }
     setPlay(!play);
-    click = true;
   };
 
+  let playAgain = () => {
+    setPlay(true);
+  }
   // console.log(refPiedra, refPapel, refTijeras);
 
   return (
     <>
       <div
         onClick={(e) => {
-          play ? clickButton(e.target.innerText) : console.log("botón deshabilitado");
+          play
+            ? clickButton(e.target.innerText)
+            : console.log("botón deshabilitado");
         }}
       >
         <button ref={refPiedra}>PIEDRA</button>

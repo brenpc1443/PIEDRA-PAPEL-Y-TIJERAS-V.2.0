@@ -3,7 +3,7 @@ import papel from "../images/img/papel.png";
 import piedra from "../images/img/piedra.png";
 import tijeras from "../images/img/tijera.png";
 
-export default function Game({ Click, result }) {
+export default function Game({ Click, result, playAgainG }) {
   let refImgCpu = useRef();
 
   let [imgPlayer, setImgPlayer] = useState(null);
@@ -15,6 +15,10 @@ export default function Game({ Click, result }) {
       animationImageCpu();
     }
   }, [Click]);
+
+  useEffect(() => {
+    playAgainG === false ? console.log() : playAgain();
+  }, [playAgainG]);
 
   let randomImage = () => {
     let numbRan = Number.parseInt(Math.random() * 10);
@@ -90,6 +94,11 @@ export default function Game({ Click, result }) {
     } 
     return "PERDISTE";
   };
+
+  let playAgain = () => {
+    setImgPlayer(null);
+    setImgCPU(null);
+  }
 
   return (
     <>
