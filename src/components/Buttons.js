@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 
 const Buttons = ({ handleClick }) => {
   
-  const [play, setPlay] = useState(true);
+  let [play, setPlay] = useState(true);
   
   let click = false;
 
@@ -20,6 +20,9 @@ const Buttons = ({ handleClick }) => {
         break;
       case "TIJERAS":
         handleClick("TIJERAS");
+        break;
+      default:
+        handleClick("");
         break;
     }
     setPlay(!play);

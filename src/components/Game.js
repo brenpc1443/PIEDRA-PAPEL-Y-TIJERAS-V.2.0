@@ -3,19 +3,22 @@ import papel from "../images/img/papel.png";
 import piedra from "../images/img/piedra.png";
 import tijeras from "../images/img/tijera.png";
 
-export default function Game({ Click }) {
+export default function Game({ Click, result }) {
   let refImgCpu = useRef();
+
   let [imgPlayer, setImgPlayer] = useState(null);
-  const [imgCPU, setImgCPU] = useState(null);
+  let [imgCPU, setImgCPU] = useState(null);
 
   useEffect(() => {
     imagePlayer(Click);
-    Click == "" ? console.log("Aplicacion iniciando") : animationImageCpu();
+    if (Click !== "") {
+      animationImageCpu();
+    }
   }, [Click]);
 
   let randomImage = () => {
     let numbRan = Number.parseInt(Math.random() * 10);
-    console.log(numbRan);
+    // console.log(numbRan);
 
     if (numbRan < 3) {
       return piedra;
@@ -29,10 +32,13 @@ export default function Game({ Click }) {
   let animationImageCpu = () => {
     const paint = setInterval(() => {
       let imgCpu = randomImage();
-      setImgCPU(imgCpu)
+      setImgCPU((imgCPU = imgCpu));
       //pintar el cambio de imagen del cpu con la funcion randomImage()
     }, 1000);
     setTimeout(() => {
+
+      let r = resultOfGame();
+      result(r);
       clearInterval(paint);
     }, 4000);
   };
@@ -52,6 +58,37 @@ export default function Game({ Click }) {
         setImgPlayer((imgPlayer = null));
         break;
     }
+  };
+
+  let resultOfGame = () => {
+    let playCPU = null;
+    let playPlayer = Click;
+
+    if (imgCPU === tijeras) {
+      playCPU = "TIJERAS"; 
+      if (playPlayer === "TIJERAS") {
+        return "EMPATE";
+      } else if (playPlayer === "PIEDRA") {
+        return "GANASTE";
+      }
+    } else if (imgCPU === piedra) {
+      playCPU = "PIEDRA";
+
+      if (playPlayer === "PIEDRA") {
+        return "EMPATE";
+      } else if (playPlayer === "PAPEL") {
+        return "GANASTE";
+      }
+    } else if (imgCPU === papel) {
+      playCPU = "PAPEL";
+
+      if (playPlayer === "PAPEL") {
+        return "EMPATE";
+      } else if (playPlayer === "TIJERAS") {
+        return "GANASTE";
+      }
+    } 
+    return "PERDISTE";
   };
 
   return (

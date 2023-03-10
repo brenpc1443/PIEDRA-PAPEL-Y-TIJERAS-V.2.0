@@ -1,22 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import "./App.css";
 import Buttons from "./components/Buttons";
 import Game from "./components/Game";
-  
+import ResolveGame from "./components/ResolveGame";
+
 function App() {
-
-const [click, setClick] = useState("");
-
+  let [click, setClick] = useState(""),
+    [resultGame, setResultGame] = useState("");
 
   return (
     <div>
-      <Game 
-      Click = {click}
+      <ResolveGame
+        result = {resultGame}
+      />
+      <Game
+        Click={click}
+        result={(e) => {
+          setResultGame(e);
+        }}
       />
       <Buttons
-      handleClick = {(e) => {
-        setClick(e);
-      }}
+        handleClick={(e) => {
+          setClick(e);
+        }}
       />
     </div>
   );
