@@ -60,9 +60,11 @@ const Buttons = ({ handleClick, playAgainB }) => {
     <>
       <Div
         onClick={(e) => {
-          play
-            ? clickButton(e.target.innerText)
-            : console.log("botón deshabilitado");
+          if(play){
+            e.target.nodeName === "DIV" ? console.log("donde presionas? 7u7") : clickButton(e.target.innerText);
+          }else{
+            console.log();
+          }
         }}
       >
         <BtnPiedra>PIEDRA</BtnPiedra>
@@ -70,7 +72,7 @@ const Buttons = ({ handleClick, playAgainB }) => {
         <BtnTijeras>TIJERAS</BtnTijeras>
       </Div>
     </>
-  );
+  ); 
 };
 
 export default Buttons;
