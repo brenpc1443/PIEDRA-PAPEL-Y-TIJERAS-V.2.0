@@ -1,6 +1,28 @@
 import { useState, useEffect } from "react";
+import styled from "styled-components";
 
-const ResolveGame = ({ result, playAgain }) => {
+const ResultGame = styled.h2`
+  text-align: center;
+  margin: 0 0 70px 0;
+  font-size: 4rem;
+`;
+let Div = styled.div`
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: RGB(102, 102, 102, 0.6);
+`;
+
+const Btn = styled.button`
+    height: 50px;
+    width: 150px;
+    font-size: 1.1rem;
+  `;
+
+const ResolveGame = ({ result, playAgain, dis }) => {
   let [resultGame, setResultGame] = useState("");
 
   useEffect(() => {
@@ -10,22 +32,30 @@ const ResolveGame = ({ result, playAgain }) => {
   let paintResult = () => {
     switch (resultGame) {
       case "GANASTE":
-        return <h2 style={{ color: "green" }}>{resultGame}</h2>;
+        return <ResultGame style={{ color: "green" }}>{resultGame}</ResultGame>;
       case "EMPATE":
-        return <h2 style={{ color: "orange" }}>{resultGame}</h2>;
+        return (
+          <ResultGame style={{ color: "orange" }}>{resultGame}</ResultGame>
+        );
       case "PERDISTE":
-        return <h2 style={{ color: "red" }}>{resultGame}</h2>;
+        return <ResultGame style={{ color: "red" }}>{resultGame}</ResultGame>;
       default:
-        return <h2>{resultGame}</h2>;
+        return <ResultGame>{resultGame}</ResultGame>;
     }
   };
 
   return (
     <>
-      {paintResult()}
-      <button onClick={() => {
-        resultGame === "" ? console.log() : playAgain();
-      }}>Jugar de nuevo</button>
+      <Div style={{display: `${dis}`}}>
+        {paintResult()}
+        <Btn
+          onClick={() => {
+            resultGame === "" ? console.log() : playAgain();
+          }}
+        >
+          Jugar de nuevo
+        </Btn>
+      </Div>
     </>
   );
 };
