@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "./App.css";
 import Buttons from "./components/Buttons";
 import Game from "./components/Game";
+import Info from "./components/Info";
 import Login from "./components/Login";
 import Punctuation from "./components/Punctuation";
 import ResolveGame from "./components/ResolveGame";
@@ -16,9 +17,9 @@ function App() {
   let [click, setClick] = useState(""),
     [resultGame, setResultGame] = useState(""),
     [again, setAgain] = useState(false),
-    [passOn, setPassOn] = useState(""),
+    [passOn, setPassOn] = useState(window.localStorage.getItem("namePlayer")),
     [disp, setDisp] = useState(`none`),
-    [dispG, setDispG] = useState(`none`);
+    [dispG, setDispG] = useState(`block`);
 
   useEffect(() => {
     resultGame === "" ? setDisp(`none`) : setDisp(`flex`);
@@ -38,10 +39,18 @@ function App() {
     }, 1000);
   };
 
+  let paintModule = () => {
+    if (window.localStorage.getItem("sesion") === "true") {
+    } else {
+      return <Login carryOn={(e) => setPassOn(e)} />;
+    }
+  };
+
   return (
     <div>
       <ResolveGame dis={disp} result={resultGame} playAgain={againA} />
-      <PrincipalGame style={{display: `${dispG}`}}>
+      <PrincipalGame style={{ display: `${dispG}` }}>
+        <Info />
         <Punctuation result={resultGame} namePlayer={passOn} />
         <Game
           Click={click}
@@ -57,11 +66,7 @@ function App() {
           playAgainB={again}
         />
       </PrincipalGame>
-      <Login
-        carryOn={(e) => {
-          setPassOn(e);
-        }}
-      />
+      {paintModule()}
     </div>
   );
 }

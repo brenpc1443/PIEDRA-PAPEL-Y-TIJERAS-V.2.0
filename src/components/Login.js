@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 
 const P = styled.p`
@@ -30,6 +30,12 @@ const Login = ({ carryOn }) => {
   let [name, setName] = useState("jugador"),
     [dis, setDis] = useState("flex");
 
+  useEffect(() => {
+    if (window.localStorage.getItem("sesion") === "true") {
+      setDis(`none`);
+    }
+  }, []);
+
   let textBtn = () => {
     if (name === "") {
       return "Saltar";
@@ -44,6 +50,8 @@ const Login = ({ carryOn }) => {
 
   let continueGame = (e) => {
     carryOn(name);
+    window.localStorage.setItem("namePlayer", name);
+    window.localStorage.setItem("sesion", "true");
     setDis(`none`);
   };
 

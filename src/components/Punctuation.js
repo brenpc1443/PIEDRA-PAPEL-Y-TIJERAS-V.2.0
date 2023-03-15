@@ -26,6 +26,10 @@ const Div = styled.div`
 `;
 
 const Punctuation = ({ result, namePlayer }) => {
+
+  let winP = window.localStorage.getItem("winsPlayer"),
+      winC = window.localStorage.getItem("winsCPU")
+
   useEffect(() => {
     points(result);
   }, [result]);
@@ -36,9 +40,13 @@ const Punctuation = ({ result, namePlayer }) => {
   let points = (r) => {
     switch (r) {
       case "GANASTE":
+        winP++;
+        window.localStorage.setItem("winsPlayer", String(winP));
         setPointPlayer(pointPlayer + 1);
         break;
       case "PERDISTE":
+        winC++;
+        window.localStorage.setItem("winsCPU", String(winC));
         setPointCPU(pointCPU + 1);
         break;
       default:
