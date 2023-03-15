@@ -35,5 +35,18 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brenpc1443/PIEDRA-PAPEL-Y-TIJERAS-V.2.0.git"
+  },
+  "author": "brenpc",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brenpc1443/PIEDRA-PAPEL-Y-TIJERAS-V.2.0/issues"
+  },
+  "homepage": "https://github.com/brenpc1443/PIEDRA-PAPEL-Y-TIJERAS-V.2.0#readme"
 }
