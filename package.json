@@ -2,7 +2,6 @@
   "name": "juego-ppt",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://brenpc1443.github.io/react-github-pages/build",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
@@ -49,5 +48,5 @@
   "bugs": {
     "url": "https://github.com/brenpc1443/PIEDRA-PAPEL-Y-TIJERAS-V.2.0/issues"
   },
-  "homepage": "https://github.com/brenpc1443/PIEDRA-PAPEL-Y-TIJERAS-V.2.0#readme"
+  "homepage": "https://brenpc1443.github.io/react-github-pages/build"
 }
